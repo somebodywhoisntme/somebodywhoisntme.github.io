@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="stylesheet.css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<title>peRCom Diagnose Tool</title>
+</head>
+<body>
+
+<h1>peRCom Diagnose Tool</h1>
+<div id="main">
+  <p class=p_answers>Startet das Ger&aumlt?</p>
+  <button id=starting_btn_y class=button_yes onclick="showFunction('starting','starting_btn_n')">Ja</button>
+  <button id=starting_btn_n class=button_no onclick="showFunction('not_starting','starting_btn_y')">Nein</button>
+</div>
+
+<div id="starting" class="answers">
+  <p class=p_answers>L&aumlsst sich Ger&aumlt bedienen?</p>
+  <input class="btn_close" type="button" onclick="close_div('starting_btn_n', 'starting')" value="X">
+  <button id=operate_btn_y class=button_yes onclick="showFunction('operate','operate_btn_n')">Ja</button>
+  <button id=operate_btn_n class=button_no onclick="showFunction('defect_touch','operate_btn_y')">Nein</button>
+</div>
+<div id="operate" class="answers">
+  <p class=p_answers>Starten Apps willk&uumlrlich oder PIN wird wie von selbst eingegeben?</p>
+  <input class="btn_close" type="button" onclick="close_div('operate_btn_n', 'operate')" value="X">
+  <button id=ghost_btn_y class=button_yes onclick="showFunction('defect_touch1','ghost_btn_n')">Ja</button>
+  <button id=ghost_btn_n class=button_no onclick="showFunction('radio','ghost_btn_y')">Nein</button>
+</div>
+<div id="radio" class="answers">
+  <p class=p_answers>Funktionieren der Mobilfunkempfang, WLAN & Bluetooth?</p>
+  <input class="btn_close" type="button" onclick="close_div('ghost_btn_y', 'radio')" value="X">
+  <button id=radio_btn_y class=button_yes onclick="showFunction('charging','radio_btn_n')">Ja</button>
+  <button id=radio_btn_n class=button_no onclick="showFunction('defect_radio','radio_btn_y')">Nein</button>
+</div>
+<div id="charging" class="answers">
+  <p class=p_answers>L&aumldt das Ger&aumlt?</p>
+  <input class="btn_close" type="button" onclick="close_div('radio_btn_n', 'charging')" value="X">
+  <button id=charging_btn_y class=button_yes onclick="showFunction('battery','charging_btn_n')">Ja</button>
+  <button id=charging_btn_n class=button_no onclick="showFunction('no_ampere','charging_btn_y')">Nein</button>
+</div>
+<div id="battery" class="answers">
+  <p class=p_answers>Entl&aumldt das Ger&aumlt schnell/muss mehr als 1x am Tag geladen werden?</p>
+  <input class="btn_close" type="button" onclick="close_div('charging_btn_n', 'battery')" value="X">
+  <button id=battery_btn_y class=button_yes onclick="showFunction('draining','battery_btn_n')">Ja</button>
+  <button id=battery_btn_n class=button_no onclick="showFunction('where_problem','battery_btn_y')">Nein</button>
+</div>
+
+<div id="not_starting" class="answers">
+  <p class=p_answers>Zeigt der USB-Tester einen Wert zw. 0.3 - 2 Ampere an?</p>
+  <input class="btn_close" type="button" onclick="close_div('starting_btn_y', 'not_starting')" value="X">
+  <button id=ampere_btn_y class=button_yes onclick="showFunction('reset','ampere_btn_n')">Ja</button>
+  <button id=ampere_btn_n class=button_no onclick="showFunction('no_ampere','ampere_btn_y')">Nein</button>
+</div>
+<div id="reset" class="answers">
+  <p class=p_answers>Reagiert Ger&aumlt auf Ladekabel, Nachrichten u./o. Wecker mit Vibration/Sound?</p>
+  <input class="btn_close" type="button" onclick="close_div('ampere_btn_n', 'reset')" value="X">
+  <button id=reset_btn_y class=button_yes onclick="showFunction('reaction','reset_btn_n')">Ja</button>
+  <button id=reset_btn_n class=button_no onclick="showFunction('no_reaction','reset_btn_y')">Nein</button>
+</div>
+
+
+<div id="defect_touch" class="solutions">
+  <input class="btn_close" type="button" onclick="close_div('operate_btn_y', 'defect_touch')" value="X">
+  <p class=p_solutions>Zu 90% ist der Touchscreen defekt</p>
+  <p class=p_solutions>Das Display muss getauscht werden</p>
+  <br>
+  <p class=p_solutions>Es k&oumlnnte auch der Touchcontroller(Chip)</p>
+  <p class=p_solutions>defekt sein aber die Wahrscheinlichkeit ist gering</p>
+</div>
+<div id="defect_touch1" class="solutions">
+  <input class="btn_close" type="button" onclick="close_div('ghost_btn_n', 'defect_touch1')" value="X">
+  <p class=p_solutions>Zu 90% ist der Touchscreen defekt</p>
+  <p class=p_solutions>Das Display muss getauscht werden</p>
+  <br>
+  <p class=p_solutions>Es k&oumlnnte auch der Touchcontroller(Chip)</p>
+  <p class=p_solutions>defekt sein aber die Wahrscheinlichkeit ist gering</p>
+</div>
+<div id="defect_radio" class="solutions">
+  <input class="btn_close" type="button" onclick="close_div('radio_btn_y', 'defect_radio')" value="X">
+  <p class=p_solutions>Entweder Soft o. Hardwarefehler; Empfehlung Diagnose</p>
+  <br>
+  <p class=p_solutions>Wird in den Einstellungen keine IMEI, WLAN oder Bluetooth MAC Adresse</p>
+  <p class=p_solutions>angezeigt ist der jeweilige IC defekt und muss durch L&oumltarbeiten</p>
+  <p class=p_solutions>getauscht werden. Bei &aumllteren Ger&aumlten unwirtschaftlich.</p>
+  <br>
+  <p class=p_solutions>Werden IMEI, WLAN- o. Bluetooth-Mac angezeigt mit alternativ SIM/WLAN/Bluetoothger&aumlt</p>
+  <p class=p_solutions>probieren. Wenn nicht erfolgreich muss meistens nur die Antenne getauscht werden.</p>
+</div>
+<div id="reaction" class="solutions">
+  <input class="btn_close" type="button" onclick="close_div('reset_btn_n', 'reaction')" value="X">
+  <p class=p_solutions>Wenn Ger&aumlt auf Ladekabel, Nachrichten u./o. Wecker mit Vibration/Sound</p>
+  <p class=p_solutions>reagiert ist zu 90% das Display defekt und muss getauscht werden.</p>
+  <br>
+  <p class=p_solutions>Es k&oumlnnte auch die Hintergrundbeleuchtungsschaltung sein. Dann w&aumlren</p>
+  <p class=p_solutions>L&oumltarbeiten n&oumltig aber die Wahrscheinlichkeit ist gering wenn</p>
+  <p class=p_solutions>der Kunde oder jmd. anderes nicht selbst einen Displaytausch probiert hat.</p>
+</div>
+<div id="no_reaction" class="solutions">
+  <input class="btn_close" type="button" onclick="close_div('reset_btn_y', 'no_reaction')" value="X">
+  <p class=p_solutions>Entweder Ladebuchse/-platine, Powerbutton oder Mainboard defekt.</p>
+  <p class=p_solutions>Ger&aumlt zur Diagnose einsenden.</p>
+</div>
+<div id="no_ampere" class="solutions">
+  <input class="btn_close" type="button" onclick="close_div('ampere_btn_y', 'no_ampere')" value="X">
+  <p class=p_solutions>Entweder Ladebuchse/-platine oder Mainboard defekt.</p>
+  <p class=p_solutions>Vorsichtig mit Pinzette o. dergleichen Ladebuchse reinigen.</p>
+  <p class=p_solutions>Wenn das nicht hilft Ger&aumlt zur Diagnose einsenden.</p>
+</div>
+<div id="draining" class="solutions">
+  <input class="btn_close" type="button" onclick="close_div('battery_btn_n', 'draining')" value="X">
+  <p class=p_solutions>Entl&aumldt sich der Akku schnell bzw. muss das Ger&aumlt</p>
+  <p class=p_solutions>&oumlfter als 1x am Tag geladen werden bitte pr&uumlfen ob</p>
+  <p class=p_solutions>Energiehungrige Apps wie die Corona-App laufen.</p>
+  <br>
+  <p class=p_solutions>Falls das nicht an Apps liegt und das Ger&aumlt schon &aumllter als</p>
+  <p class=p_solutions>2 Jahre ist muss der Akku getauscht werden. Gerade bei Leuten die</p>
+  <p class=p_solutions>viel spielen, Videos usw. schauen keine Seltenheit.</p>
+</div>
+<div id="where_problem" class="solutions">
+  <input class="btn_close" type="button" onclick="close_div('battery_btn_y', 'where_problem')" value="X">
+  <p class=p_solutions>Das Ger&aumlt funktioniert, wo liegt das Problem? :)</p>
+  <p class=p_solutions>Ist ein Lautsprecher, Mikrofon o. die Kopfh&oumlherbuchse</p>
+  <p class=p_solutions>defekt das Ger&aumlt zur Diagnose bzw. Reparatur einsenden.</p>
+  <br>
+  <p class=p_solutions>Kann auch am jew. TreiberIC(Chip) liegen. KD soll w&aumlhlen</p>
+  <p class=p_solutions>ob Reparatur o. erst Diagnose stattfinden soll.</p>
+</div>
+</html>
